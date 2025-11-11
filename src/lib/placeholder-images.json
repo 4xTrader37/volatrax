@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "course-beginner",
+      "description": "A graph showing upward growth, representing a beginner's journey in trading.",
+      "imageUrl": "https://images.unsplash.com/photo-1535320903710-d993d3d77d29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx0cmFkaW5nJTIwY2hhcnR8ZW58MHx8fHwxNzYyNzcxNzU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "trading chart"
+    },
+    {
+      "id": "course-advanced",
+      "description": "A complex screen with multiple charts and data, indicating advanced analysis.",
+      "imageUrl": "https://images.unsplash.com/photo-1542744173-05336fcc7ad4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZGF0YSUyMGFuYWx5c2lzfGVufDB8fHx8MTc2Mjc0NDI1OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "data analysis"
+    },
+    {
+      "id": "course-risk",
+      "description": "A balanced scale or a shield, symbolizing risk management and protection.",
+      "imageUrl": "https://images.unsplash.com/photo-1696085508231-6191c01fabeb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxiYWxhbmNlJTIwc2VjdXJpdHl8ZW58MHx8fHwxNzYyODI2MTQyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "balance security"
+    },
+    {
+      "id": "course-smc",
+      "description": "A chess board, representing strategic thinking in smart money concepts.",
+      "imageUrl": "https://images.unsplash.com/photo-1677816155981-919b9a6eeded?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzdHJhdGVneSUyMGNoZXNzfGVufDB8fHx8MTc2MjgyNjE0Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "strategy chess"
+    }
+  ]
 }
