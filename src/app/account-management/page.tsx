@@ -1,8 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { CheckCircle2, MessageCircle } from 'lucide-react';
 import type { Metadata } from 'next';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import ContactWhatsappButton from '@/components/contact-whatsapp-button';
 
 export const metadata: Metadata = {
   title: 'Account Management | Volatrax',
@@ -81,6 +83,9 @@ export default function AccountManagementPage() {
               ))}
             </ul>
           </CardContent>
+          <CardFooter>
+            <ContactWhatsappButton courseTitle="Small Account Management" phoneNumber={phoneNumber} />
+          </CardFooter>
         </Card>
         <Card className="flex flex-col border-primary shadow-lg">
           <CardHeader>
@@ -94,6 +99,9 @@ export default function AccountManagementPage() {
               ))}
             </ul>
           </CardContent>
+          <CardFooter>
+            <ContactWhatsappButton courseTitle="Big Account Management" phoneNumber={phoneNumber} />
+          </CardFooter>
         </Card>
       </div>
     </div>
