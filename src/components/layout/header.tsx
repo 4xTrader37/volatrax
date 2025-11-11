@@ -18,6 +18,7 @@ const navItems = [
   { title: 'About', href: '/about' },
   { title: 'Courses', href: '/courses' },
   { title: 'Account Management', href: '/account-management' },
+  { title: 'VIP Signals', href: '/vip-signals' },
   { title: 'FAQ', href: '/faq' },
 ];
 
