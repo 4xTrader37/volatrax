@@ -1,9 +1,16 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, BarChart, ShieldCheck, Users } from 'lucide-react';
+import { ArrowRight, BarChart, ShieldCheck, Users, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
+  const phoneNumber = "+923451811267";
+  const message = "I want to join free signal group";
+  const whatsappUrl = `https://wa.me/${phoneNumber.replace(
+    /\D/g,
+    ''
+  )}${message ? `?text=${encodeURIComponent(message)}` : ''}`;
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -99,6 +106,26 @@ export default function Home() {
                 Our team consists of professional traders and educators dedicated to your financial success and skill development.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Join Signal Group Section */}
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-primary font-headline">
+            Join Our Free Signal Group
+          </h2>
+          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+            Get access to exclusive trading signals, market analysis, and a community of traders.
+          </p>
+          <div className="mt-8">
+            <Button asChild size="lg">
+              <Link href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="mr-2 h-5 w-5" />
+                Join via WhatsApp
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

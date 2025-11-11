@@ -1,6 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, MessageCircle } from 'lucide-react';
 import type { Metadata } from 'next';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Account Management | Volatrax',
@@ -31,6 +33,13 @@ const RuleItem = ({ children }: { children: React.ReactNode }) => (
 );
 
 export default function AccountManagementPage() {
+  const phoneNumber = "+923451811267";
+  const message = "I want to join free signal group";
+  const whatsappUrl = `https://wa.me/${phoneNumber.replace(
+    /\D/g,
+    ''
+  )}${message ? `?text=${encodeURIComponent(message)}` : ''}`;
+
   return (
     <div className="container mx-auto max-w-7xl px-4 py-16 sm:py-24">
       <div className="text-center">
@@ -41,6 +50,23 @@ export default function AccountManagementPage() {
           Tailored programs designed for your investment size, with clear rules and a focus on growth.
         </p>
       </div>
+
+      <section className="my-16 py-12 bg-card rounded-lg text-center">
+          <h2 className="text-3xl font-bold text-primary font-headline">
+            Join Our Free Signal Group
+          </h2>
+          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+            Get access to exclusive trading signals, market analysis, and a community of traders.
+          </p>
+          <div className="mt-8">
+            <Button asChild size="lg">
+              <Link href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="mr-2 h-5 w-5" />
+                Join via WhatsApp
+              </Link>
+            </Button>
+          </div>
+      </section>
 
       <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
         <Card className="flex flex-col">
