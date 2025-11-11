@@ -33,8 +33,8 @@ const faqs = [
         answer: 'Trading always involves risk. For our small account management service, if the account is wiped before the initial investment is recovered, Volatrax will refund 50% of your loss to help mitigate the risk.',
     },
     {
-        question: 'Can I get a refund on a course?',
-        answer: 'We offer a 50% refund on our paid courses if you complete the course and pass the final test. This is to incentivize learning and application of the strategies taught.',
+        question: 'What benefits do I get after completing a paid course?',
+        answer: 'Upon successful completion of any of our paid courses, we will add you to our VIP signal group free of cost, where you will get access to premium trading signals and analysis.',
     },
 ];
   
