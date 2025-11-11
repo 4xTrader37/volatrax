@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import ContactWhatsappButton from '@/components/contact-whatsapp-button';
 import type { Metadata, ResolvingMetadata } from 'next';
+import PaymentHandler from '@/components/payment-handler';
 
 type Props = {
   params: { courseId: string }
@@ -47,6 +48,9 @@ export default async function CourseDetailsPage({ params }: Props) {
     notFound();
   }
 
+  const isPaidCourse = typeof course.price === 'number' && course.price > 0;
+  const phoneNumber = "+923451811267";
+
   return (
     <div className="container mx-auto max-w-5xl px-4 py-16 sm:py-24">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -75,11 +79,16 @@ export default async function CourseDetailsPage({ params }: Props) {
             <p className="mt-6 text-lg leading-7 text-muted-foreground">
                 {course.longDescription}
             </p>
-            <div className="mt-8">
-                <ContactWhatsappButton courseTitle={course.title} phoneNumber="+923451811267" />
-            </div>
+            {!isPaidCourse && (
+              <div className="mt-8">
+                  <ContactWhatsappButton courseTitle={course.title} phoneNumber={phoneNumber} />
+              </div>
+            )}
         </div>
       </div>
+      {isPaidCourse && (
+        <PaymentHandler courseTitle={course.title} phoneNumber={phoneNumber} price={course.price as number} />
+      )}
     </div>
   );
 }
