@@ -35,7 +35,7 @@ export default function CourseCard({ course }: CourseCardProps) {
       <CardContent className="flex-grow">
         <div className="flex items-center justify-between">
           <Badge variant="secondary" className="text-lg font-bold text-primary">
-            ${price.toFixed(2)}
+            PKR {price.toLocaleString()}
           </Badge>
         </div>
         <div className="mt-6 bg-accent/10 p-4 rounded-md border-l-4 border-accent">
