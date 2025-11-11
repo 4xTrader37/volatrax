@@ -23,6 +23,12 @@
       "description": "A chess board, representing strategic thinking in smart money concepts.",
       "imageUrl": "https://images.unsplash.com/photo-1677816155981-919b9a6eeded?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzdHJhdGVneSUyMGNoZXNzfGVufDB8fHx8MTc2MjgyNjE0Mnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "strategy chess"
+    },
+    {
+      "id": "course-synthetic-indices",
+      "description": "A trading platform interface for synthetic indices, showing charts and market data.",
+      "imageUrl": "https://images.unsplash.com/photo-1642793742418-b27835697698?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "trading platform"
     }
   ]
 }

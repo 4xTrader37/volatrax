@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   description: 'Browse our professional trading courses, designed for all skill levels from beginner to advanced. Start your journey to profitable trading today.',
 };
 
-// This function simulates fetching data from Firestore.
 async function getCourses(): Promise<(Course & { image: ImagePlaceholder | undefined })[]> {
   const imagesMap = new Map(PlaceHolderImages.map(img => [img.id, img]));
   return courses.map(course => ({
@@ -31,7 +30,7 @@ export default async function CoursesPage() {
         </p>
       </div>
 
-      <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+      <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
         {courseData.map((course) => (
           <CourseCard key={course.id} course={course} />
         ))}
