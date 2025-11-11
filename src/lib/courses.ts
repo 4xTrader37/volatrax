@@ -24,4 +24,12 @@ export const courses: Course[] = [
     imageId: 'course-boom-crash',
     longDescription: 'This course provides a complete guide to analyzing the Boom 1000 and Crash 1000 markets. You will learn the specific strategies and techniques required to understand the unique behavior of these synthetic indices. We will cover technical analysis, price action, and risk management tailored for Boom and Crash, enabling you to make more informed trading decisions.',
   },
+  {
+    id: 'boom-and-crash-1000-spike-catching',
+    title: 'Boom and Crash 1000 Spike Catching All Strategies',
+    description: 'Learn all the strategies to catch spikes in Boom 1000 and Crash 1000 markets.',
+    price: 300,
+    imageId: 'course-spike-catching',
+    longDescription: 'This comprehensive course covers all the advanced strategies and techniques for identifying and capitalizing on spikes in the Boom 1000 and Crash 1000 markets. You will learn how to read market structure, identify key levels, and use specific indicators to predict and trade spikes effectively, maximizing your profit potential.',
+  },
 ];
