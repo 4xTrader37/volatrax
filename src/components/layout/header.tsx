@@ -11,11 +11,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
+import ThemeToggle from '@/components/theme-toggle';
 
 const navItems = [
   { title: 'Home', href: '/' },
-  { title: 'Account Management', href: '/account-management' },
+  { title: 'About', href: '/about' },
   { title: 'Courses', href: '/courses' },
+  { title: 'Account Management', href: '/account-management' },
+  { title: 'FAQ', href: '/faq' },
 ];
 
 export default function Header() {
@@ -26,10 +29,12 @@ export default function Header() {
           <Icons.logo className="h-6 w-6 text-primary" />
           <span className="font-bold font-headline">Volatrax</span>
         </Link>
-        <div className="hidden md:flex flex-1 items-center justify-end">
+        <div className="hidden md:flex flex-1 items-center justify-end space-x-4">
           <MainNav items={navItems} />
+          <ThemeToggle />
         </div>
         <div className="flex flex-1 items-center justify-end md:hidden">
+            <ThemeToggle />
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">

@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import WhatsappButton from '@/components/whatsapp-button';
+import { ThemeProvider } from '@/components/providers';
 
 export const metadata: Metadata = {
   title: 'Volatrax Digital Services | Account Management & Trading Courses',
@@ -25,13 +26,20 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className={cn('min-h-screen bg-background font-body antialiased')}>
-        <div className="relative flex min-h-dvh flex-col">
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
-        <WhatsappButton phoneNumber="+923451811267" />
-        <Toaster />
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+        >
+            <div className="relative flex min-h-dvh flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            </div>
+            <WhatsappButton phoneNumber="+923451811267" />
+            <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
