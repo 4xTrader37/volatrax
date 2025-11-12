@@ -21,12 +21,7 @@ async function getCourses(): Promise<(Course & { image: ImagePlaceholder | undef
 
 export default async function CoursesPage() {
   const courseData = await getCourses();
-  const phoneNumber = "+923451811267";
-  const message = "I want to join free signal group";
-  const whatsappUrl = `https://wa.me/${phoneNumber.replace(
-    /\D/g,
-    ''
-  )}${message ? `?text=${encodeURIComponent(message)}` : ''}`;
+  const whatsappUrl = "https://chat.whatsapp.com/IP7JwoykWnBIjNDQjrvtPj";
 
   return (
     <div className="container mx-auto max-w-7xl px-4 py-16 sm:py-24">
