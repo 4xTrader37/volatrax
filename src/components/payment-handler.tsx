@@ -6,7 +6,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Loader2, MessageCircle, Upload } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Alert, AlertDescription, AlertTitle } from './ui/alert';
-import { generateWhatsAppMessage } from '@/ai/flows/generate-whatsapp-message';
+import Link from 'next/link';
 
 interface PaymentHandlerProps {
   courseTitle: string;
@@ -15,7 +15,6 @@ interface PaymentHandlerProps {
 }
 
 export default function PaymentHandler({ courseTitle, phoneNumber, price }: PaymentHandlerProps) {
-  const [isPending, setIsPending] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
@@ -54,40 +53,32 @@ export default function PaymentHandler({ courseTitle, phoneNumber, price }: Paym
         return;
     }
     
-    setIsPending(true);
+    // Copy image to clipboard to make it easier for user to paste
     try {
-        // We will just open whatsapp with a message, user has to paste the image
         await navigator.clipboard.write([
             new ClipboardItem({
               [selectedFile.type]: selectedFile
             })
         ]);
-
-        const { prefilledMessage } = await generateWhatsAppMessage({ courseTitle });
-        const finalMessage = `${prefilledMessage}\n\nI have sent the payment of PKR ${price}. Please find the screenshot attached.`;
-        const encodedMessage = encodeURIComponent(finalMessage);
-        const cleanPhoneNumber = phoneNumber.replace(/\D/g, '');
-        const whatsappUrl = `https://wa.me/${cleanPhoneNumber}?text=${encodedMessage}`;
-        
-        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-        
         toast({
             title: "Action Required",
             description: "Please paste the screenshot in the WhatsApp chat to complete your enrollment.",
             duration: 10000,
         });
-
     } catch (error) {
-      console.error('Failed to prepare WhatsApp message:', error);
-      toast({
-        variant: 'destructive',
-        title: 'Error',
-        description: 'Could not open WhatsApp. Please copy the screenshot and contact us manually.',
-      });
-    } finally {
-      setIsPending(false);
+        console.error('Failed to copy image to clipboard:', error);
+        toast({
+            variant: 'destructive',
+            title: 'Clipboard Error',
+            description: 'Could not copy screenshot. Please attach it manually in WhatsApp.',
+        });
     }
   };
+
+  const prefilledMessage = `I am interested in the course titled ${courseTitle}.\n\nI have sent the payment of PKR ${price}. Please find the screenshot attached.`;
+  const encodedMessage = encodeURIComponent(prefilledMessage);
+  const cleanPhoneNumber = phoneNumber.replace(/\D/g, '');
+  const whatsappUrl = `https://wa.me/${cleanPhoneNumber}?text=${encodedMessage}`;
 
   return (
     <Card className="mt-8 border-primary">
@@ -126,18 +117,11 @@ export default function PaymentHandler({ courseTitle, phoneNumber, price }: Paym
             <div>
                 <h3 className="font-semibold text-lg mb-2">Step 3: Confirm via WhatsApp</h3>
                 <p className="text-muted-foreground mb-4">Click the button below to send us your confirmation.</p>
-                 <Button onClick={handleContact} disabled={isPending || !selectedFile} className="w-full">
-                    {isPending ? (
-                        <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Processing...
-                        </>
-                    ) : (
-                        <>
+                 <Button asChild disabled={!selectedFile} className="w-full" onClick={handleContact}>
+                    <Link href={whatsappUrl} target="_blank" rel="noopener,noreferrer">
                         <MessageCircle className="mr-2 h-4 w-4" />
                         Contact & Send Proof via WhatsApp
-                        </>
-                    )}
+                    </Link>
                 </Button>
                 {selectedFile && (
                     <Alert variant="default" className="mt-4 bg-accent/20">
