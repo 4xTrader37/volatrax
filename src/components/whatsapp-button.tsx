@@ -31,7 +31,7 @@ export default function WhatsappButton({ phoneNumber, message }: WhatsappButtonP
   return (
     <Button
       asChild
-      className="fixed bottom-24 md:bottom-6 right-6 h-16 w-16 rounded-full bg-[#25D366] hover:bg-[#128C7E] shadow-lg z-50"
+      className="fixed bottom-6 left-6 h-16 w-16 rounded-full bg-[#25D366] hover:bg-[#128C7E] shadow-lg z-50"
       aria-label="Contact us on WhatsApp"
     >
       <Link href={whatsappUrl} target="_blank" rel="noopener noreferrer">
