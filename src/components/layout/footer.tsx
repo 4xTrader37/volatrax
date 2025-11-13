@@ -3,6 +3,25 @@ import { Youtube } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 
+const TikTokIcon = () => (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width="24" 
+      height="24" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    >
+      <path d="M16 4h4v4" />
+      <path d="M16 10v2a4 4 0 0 1-4 4H8" />
+      <path d="M12 4v10a4 4 0 0 0 4 4h4" />
+    </svg>
+);
+
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -19,6 +38,11 @@ export default function Footer() {
           <Button asChild variant="ghost" size="icon">
             <Link href="https://www.youtube.com/@VOLATRAX" target="_blank" rel="noopener noreferrer" aria-label="YouTube Channel">
                 <Youtube className="h-6 w-6" />
+            </Link>
+          </Button>
+          <Button asChild variant="ghost" size="icon">
+            <Link href="https://www.tiktok.com/@volatrax?_r=1&_t=ZS-91MnuPXWIgZ" target="_blank" rel="noopener noreferrer" aria-label="TikTok Profile">
+                <TikTokIcon />
             </Link>
           </Button>
         </div>
