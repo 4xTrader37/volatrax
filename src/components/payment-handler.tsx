@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
-import { Loader2, MessageCircle, Upload } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Alert, AlertDescription, AlertTitle } from './ui/alert';
 import Link from 'next/link';
+import { Checkbox } from './ui/checkbox';
+import { Label } from './ui/label';
 
 interface PaymentHandlerProps {
   courseTitle: string;
@@ -15,67 +15,12 @@ interface PaymentHandlerProps {
 }
 
 export default function PaymentHandler({ courseTitle, phoneNumber, price }: PaymentHandlerProps) {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const { toast } = useToast();
+  const [isPaid, setIsPaid] = useState(false);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      if (file.size > 5 * 1024 * 1024) { // 5MB limit
-        toast({
-            variant: "destructive",
-            title: "File too large",
-            description: "Please select an image smaller than 5MB.",
-        });
-        setSelectedFile(null);
-      } else {
-        setSelectedFile(file);
-        toast({
-            title: "Screenshot Selected",
-            description: "Your payment proof is ready. Click the WhatsApp button to continue.",
-        });
-      }
-    }
-  };
+  const prefilledMessage = isPaid
+    ? `I am interested in "${courseTitle}" I have paid ${price} .`
+    : `Hello , I'm Interested in "${courseTitle}" course`;
 
-  const handleUploadClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleContact = async () => {
-    if (!selectedFile) {
-        toast({
-            variant: "destructive",
-            title: "No Screenshot",
-            description: "Please upload your payment screenshot before contacting us.",
-        });
-        return;
-    }
-    
-    // Copy image to clipboard to make it easier for user to paste
-    try {
-        await navigator.clipboard.write([
-            new ClipboardItem({
-              [selectedFile.type]: selectedFile
-            })
-        ]);
-        toast({
-            title: "Action Required",
-            description: "Please paste the screenshot in the WhatsApp chat to complete your enrollment.",
-            duration: 10000,
-        });
-    } catch (error) {
-        console.error('Failed to copy image to clipboard:', error);
-        toast({
-            variant: 'destructive',
-            title: 'Clipboard Error',
-            description: 'Could not copy screenshot. Please attach it manually in WhatsApp.',
-        });
-    }
-  };
-
-  const prefilledMessage = `I am interested in the course titled ${courseTitle}.\n\nI have sent the payment of PKR ${price}. Please find the screenshot attached.`;
   const encodedMessage = encodeURIComponent(prefilledMessage);
   const cleanPhoneNumber = phoneNumber.replace(/\D/g, '');
   const whatsappUrl = `https://wa.me/${cleanPhoneNumber}?text=${encodedMessage}`;
@@ -95,42 +40,28 @@ export default function PaymentHandler({ courseTitle, phoneNumber, price }: Paym
                     <p><strong>Account Name:</strong> Fozia Naseem</p>
                     <p><strong>Account Number:</strong> 03298937732</p>
                 </div>
-                 <p className="text-xs text-muted-foreground mt-2">Please take a screenshot of the payment confirmation.</p>
             </div>
             
             <div>
-                <h3 className="font-semibold text-lg mb-2">Step 2: Upload Proof</h3>
-                <p className="text-muted-foreground mb-4">Upload the screenshot of your payment to proceed.</p>
-                <input
-                    type="file"
-                    ref={fileInputRef}
-                    onChange={handleFileChange}
-                    className="hidden"
-                    accept="image/png, image/jpeg, image/jpg"
-                />
-                <Button onClick={handleUploadClick} variant="outline" className="w-full">
-                    <Upload className="mr-2 h-4 w-4" />
-                    {selectedFile ? `Selected: ${selectedFile.name}` : 'Select Screenshot'}
-                </Button>
+                <h3 className="font-semibold text-lg mb-2">Step 2: Confirm Payment</h3>
+                <p className="text-muted-foreground mb-4">Tick the box below if you have completed the payment.</p>
+                <div className="flex items-center space-x-2 my-4">
+                  <Checkbox id="ihavepaid" checked={isPaid} onCheckedChange={(checked) => setIsPaid(checked as boolean)} />
+                  <Label htmlFor="ihavepaid" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                    I have paid
+                  </Label>
+                </div>
             </div>
 
             <div>
                 <h3 className="font-semibold text-lg mb-2">Step 3: Confirm via WhatsApp</h3>
                 <p className="text-muted-foreground mb-4">Click the button below to send us your confirmation.</p>
-                 <Button asChild disabled={!selectedFile} className="w-full" onClick={handleContact}>
+                 <Button asChild className="w-full">
                     <Link href={whatsappUrl} target="_blank" rel="noopener,noreferrer">
                         <MessageCircle className="mr-2 h-4 w-4" />
-                        Contact & Send Proof via WhatsApp
+                        Contact via WhatsApp
                     </Link>
                 </Button>
-                {selectedFile && (
-                    <Alert variant="default" className="mt-4 bg-accent/20">
-                        <AlertTitle className="font-semibold">Ready to Send!</AlertTitle>
-                        <AlertDescription>
-                        Your screenshot is copied. After clicking the button, simply **paste (Ctrl+V or Command+V)** the image into the WhatsApp chat.
-                        </AlertDescription>
-                    </Alert>
-                )}
             </div>
 
         </CardContent>
