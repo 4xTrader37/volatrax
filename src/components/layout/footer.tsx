@@ -1,4 +1,7 @@
 import { Icons } from '@/components/icons';
+import { Youtube } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '../ui/button';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,6 +14,13 @@ export default function Footer() {
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
             &copy; {currentYear} Volatrax Digital Services. All rights reserved.
           </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button asChild variant="ghost" size="icon">
+            <Link href="https://www.youtube.com/@VOLATRAX" target="_blank" rel="noopener noreferrer" aria-label="YouTube Channel">
+                <Youtube className="h-6 w-6" />
+            </Link>
+          </Button>
         </div>
       </div>
     </footer>
