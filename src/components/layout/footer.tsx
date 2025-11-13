@@ -15,9 +15,8 @@ const TikTokIcon = () => (
       strokeLinecap="round" 
       strokeLinejoin="round"
     >
-      <path d="M16 4h4v4" />
-      <path d="M16 10v2a4 4 0 0 1-4 4H8" />
-      <path d="M12 4v10a4 4 0 0 0 4 4h4" />
+      <path d="M16.5 4.5a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Z"/>
+      <path d="M12 9v9a4.5 4.5 0 0 0 4.5 4.5V18"/>
     </svg>
 );
 
