@@ -6,6 +6,9 @@ import { Badge } from '@/components/ui/badge';
 import ContactWhatsappButton from '@/components/contact-whatsapp-button';
 import type { Metadata, ResolvingMetadata } from 'next';
 import PaymentHandler from '@/components/payment-handler';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { ExternalLink } from 'lucide-react';
 
 type Props = {
   params: { courseId: string }
@@ -49,6 +52,7 @@ export default async function CourseDetailsPage({ params }: Props) {
   }
 
   const isPaidCourse = typeof course.price === 'number' && course.price > 0;
+  const isFreeBeginnerCourse = course.id === 'synthetic-indices-trading-course-for-beginners';
   const phoneNumber = "+923451811267";
 
   return (
@@ -79,11 +83,18 @@ export default async function CourseDetailsPage({ params }: Props) {
             <p className="mt-6 text-lg leading-7 text-muted-foreground">
                 {course.longDescription}
             </p>
-            {!isPaidCourse && (
-              <div className="mt-8">
-                  <ContactWhatsappButton courseTitle={course.title} phoneNumber={phoneNumber} />
-              </div>
-            )}
+            <div className="mt-8">
+                {isFreeBeginnerCourse ? (
+                    <Button asChild className="w-full" variant="default">
+                        <Link href="https://6915cc3fb913e.site123.me" target="_blank" rel="noopener,noreferrer">
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            Visit on website
+                        </Link>
+                    </Button>
+                ) : !isPaidCourse ? (
+                    <ContactWhatsappButton courseTitle={course.title} phoneNumber={phoneNumber} />
+                ) : null}
+            </div>
         </div>
       </div>
       {isPaidCourse && (
