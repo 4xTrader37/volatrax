@@ -8,7 +8,8 @@ import type { Metadata, ResolvingMetadata } from 'next';
 import PaymentHandler from '@/components/payment-handler';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, KeyRound } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 type Props = {
   params: { courseId: string }
@@ -85,12 +86,22 @@ export default async function CourseDetailsPage({ params }: Props) {
             </p>
             <div className="mt-8">
                 {isFreeBeginnerCourse ? (
-                    <Button asChild className="w-full" variant="default">
-                        <Link href="https://6915cc3fb913e.site123.me" target="_blank" rel="noopener,noreferrer">
-                            <ExternalLink className="mr-2 h-4 w-4" />
-                            Visit on website
-                        </Link>
-                    </Button>
+                    <div className="space-y-4">
+                        <Alert>
+                            <KeyRound className="h-4 w-4" />
+                            <AlertTitle className="font-bold">Access Password</AlertTitle>
+                            <AlertDescription>
+                                Use the following password on the website to access the course:
+                                <strong className="block text-lg text-primary my-2 bg-muted p-2 rounded-md">@Volatrax-begin$$$</strong>
+                            </AlertDescription>
+                        </Alert>
+                        <Button asChild className="w-full" variant="default">
+                            <Link href="https://6915cc3fb913e.site123.me" target="_blank" rel="noopener,noreferrer">
+                                <ExternalLink className="mr-2 h-4 w-4" />
+                                Visit on website
+                            </Link>
+                        </Button>
+                    </div>
                 ) : !isPaidCourse ? (
                     <ContactWhatsappButton courseTitle={course.title} phoneNumber={phoneNumber} />
                 ) : null}
