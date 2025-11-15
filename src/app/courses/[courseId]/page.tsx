@@ -12,7 +12,7 @@ import { ExternalLink, KeyRound } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 type Props = {
-  params: { courseId: string }
+  params: Promise<{ courseId: string }>
 }
 
 async function getCourse(courseId: string): Promise<(Course & { image: ImagePlaceholder | undefined }) | undefined> {
@@ -31,7 +31,8 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const course = await getCourse(params.courseId)
+  const { courseId } = await params
+  const course = await getCourse(courseId)
 
   if (!course) {
     return {
@@ -46,7 +47,8 @@ export async function generateMetadata(
 }
 
 export default async function CourseDetailsPage({ params }: Props) {
-  const course = await getCourse(params.courseId);
+  const { courseId } = await params
+  const course = await getCourse(courseId);
 
   if (!course) {
     notFound();
